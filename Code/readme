@@ -1,0 +1,8 @@
+# Requirements:Flask,Flask-SQLAlchemy,jinja2\
+#Activate.ps1 for activating virtual environment
+# Run app.py
+#runs at port 8080 in browser
+#add the data base to the instance folder
+
+
+

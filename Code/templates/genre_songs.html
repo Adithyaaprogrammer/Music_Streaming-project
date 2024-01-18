@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name = "landing" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f8f9fa;
+                top: 100px;
+                margin: 10px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                height: 90vh;
+            }
+    
+            #logout {
+                position: relative;
+                top: 50px;
+                left:590px;
+                padding: 10px;
+                background-color: #17a2b8;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+    
+            #logout a{
+                color: #fff;
+            }
+    
+            h5 {
+                text-align: center;
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+    
+            .dashboard-container {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                margin: 20px 10px;
+            }
+    
+            .sidebar {
+                width: 200px;
+                padding: 10px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin-right: 10px;
+            }
+    
+            .sidebar p {
+                font-size: 1.2em;
+                margin: 0;
+                color: #000; 
+            }
+    
+            .sidebar a {
+                text-decoration: none;
+                color: #000; 
+                display: block;
+                margin-bottom: 10px;
+                border-bottom: 1px solid #ddd; 
+                padding-bottom: 5px; 
+            }
+    
+            .sidebar a:last-child {
+                border-bottom: none; 
+            }
+    
+            .content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                width: 100%;
+            }
+    
+            .album-card {
+                width: 25%; 
+                top: 20%;
+                height: 300px;
+                margin: 1%; 
+                background-color: #f8f9fa;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                        border: 1px solid #ddd;
+            }
+    
+            .card-body {
+                padding: 20px;
+            }
+    
+            .table-bordered {
+                border-collapse: collapse;
+                width: 100%;
+            }
+    
+            .table-bordered td {
+                border: 1px solid #f8f9fa;
+                padding: 8px;
+            }
+    
+            img {
+                width: 20px;
+                height: 25px;
+            }
+            .btn-link {
+            color: #ffff;
+            text-decoration: none;
+            background-color: #17a2b8;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .btn-link:hover {
+            background-color: #136a8a;
+        }
+            
+           
+        </style><title> User Dashboard </title>
+    </head>
+    <body>
+        <div id="logout"> 
+            <a  href = "/" > Logout </a> <br />
+        </div>
+        <h5>{{user}} Dashboard </h5>
+        <div class="dashboard-container">
+        <div class="sidebar">
+            <p>Clear Search - View all</p></br>
+            <p></p>
+            <p></p>
+            <p></p>
+            <a href="/user/display/all/{{user}}"> Clear Filter </a>
+          </div>
+        
+        
+          <div class="content" >
+            
+                <div class="album-card">
+                    <div class="card-body">
+                    <h5 class="card-title">{{genre}}</h5>
+                    
+                    {% for sng in genre_song %}
+                    
+                    <div>
+                        <table class="table table-bordered">
+                            <td> {{ sng.song_name }} </td>
+                            <td> <a href ="/user/view/add/{{sng.album_id}}/{{sng.song_id}}/{{user}}"> <img src= "{{url_for('static', filename='play.png')}}" width="20" height="25" ></a> </td>
+                            <td><a href="/song/view/rating/{{sng.song_id}}/{{user}}">Rating</a></td>
+                        </table>
+                        {% endfor %} 
+                    </div>
+                </div>
+            </div>    
+        </div> 
+       
+
+    </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="landing" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #ffffff;
+        }
+
+        #logout {
+            color: #ffff;
+            text-decoration: none;
+            background-color: #17a2b8;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            
+        }
+
+        #logout a {
+            color: #ffff;
+            
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .card a {
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            background-color: #17a2b8;
+        }
+
+        .card a:hover {
+            background-color: #136a8a;
+        }
+    </style>
+</head>
+<body>
+    <div id="logout">
+        <a href="/">Logout</a>
+    </div>
+    <h1>admin's Manager dashboard</h1>
+    <div class="row">
+        <div class="card border-info bg-light mb-4">
+            <a href="/admin/user/count/user">User Count</a>
+            <a href="/admin/creator/count">Creator Count</a>
+            <a href="/admin/album/count/all">Album Count</a>
+        </div>
+    </div>
+</body>
+</html>
+
+

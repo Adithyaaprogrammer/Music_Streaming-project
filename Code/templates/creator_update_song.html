@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="landing" content="width=device-width, initial-scale=1.0">
+    <title>Creator Edit Song</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 140vh;
+        }
+
+        #logout {
+            color: #ffff;
+            text-decoration: none;
+            background-color: #17a2b8;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        #logout a {
+            color: #ffff;
+        }
+
+        h2, h4 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 150px;
+            width: 100%; 
+            resize: both; 
+        }
+
+        input[type="submit"] {
+            background-color: #17a2b8;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #136a8a;
+        }
+    </style>
+</head>
+<body>
+    <div id="logout"> 
+        <a href="/">Logout</a> <br />
+    </div>
+    
+    <div> 
+        <h2>{{ user }}'s Manager dashboard - Edit Song</h2>
+    </div>
+    
+    <div>
+        <h4>Update Product</h4>
+    </div>
+    
+    <form action="/creator/song/update/{{ song.song_id }}/{{ user }}" method="POST" id="update-product-form">
+        <div class="mx-auto col-10 col-md-8 col-lg-6">
+            <div class="form-group">
+                <label>Song Name</label>
+                <input type="text" class="form-control" name="song" value="{{ song.song_name }}" />
+            </div>
+            <div class="form-group">
+                <label>Artist</label>
+                <input type="text" class="form-control" name="artist" value="{{ song.artist }}">
+            </div>
+            <div class="form-group">
+                <label>Genre</label>
+                <input type="text" class="form-control" name="genre" value="{{ song.genre }}">
+            </div>
+            <div class="form-group">
+                <label>Lyrics</label>
+                <textarea class="form-control" name="lyrics">{{ song.lyrics }}</textarea>
+            </div>
+            <input type="submit" value="Save" />
+        </div> 
+    </form>
+</body>
+</html>

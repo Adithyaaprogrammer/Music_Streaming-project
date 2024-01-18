@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        #logout {
+            text-align: right;
+            margin: 10px;
+        }
+
+        h4, h5 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #17a2b8;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #17a2b8;
+        }
+    </style>
+
+    <title>User Song Rating </title>
+</head>
+
+<body>
+    <div id="logout">
+        <a href="/">Logout</a>
+    </div>
+    <div>
+        <h4>{{user}}'s Rating</h4>
+    </div>
+    <h5>Rating for {{song.song_name}} {{rating_avg}}</h5>
+    <form action="/song/view/rating/{{song.song_id}}/{{user}}" method="POST">
+        <div class="form-group">
+            <label>Enter rating from 1 to 10</label>
+            <input type="number" class="form-control" name="rating" />
+        </div>
+        <input type="submit" value="Save" />
+    </form>
+</body>
+
+</html>

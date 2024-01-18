@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="landing" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            top: 100px;
+            margin: 10px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 160vh;
+        }
+
+        #logout {
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            padding: 10px;
+            background-color: #17a2b8;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        #logout a{
+            color: #fff;
+        }
+
+        h5 {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin: 20px 10px;
+        }
+
+        .sidebar {
+            width: 200px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .sidebar p {
+            font-size: 1.2em;
+            margin: 0;
+            color: #000; 
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #000; 
+            display: block;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd; 
+            padding-bottom: 5px; 
+            
+        }
+
+        .sidebar a:last-child {
+            border-bottom: none; 
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 100%;
+            height:70%
+        }
+
+        .album-card {
+             width: 22%;
+            top: 10%;
+            
+            margin: 1%; 
+            background-color: #f8f9fa;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 18rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .table-bordered {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .table-bordered td {
+            border: 1px solid #f8f9fa;
+            padding: 8px;
+        }
+
+        img {
+            width: 20px;
+            height: 25px;
+        }
+
+        
+        a#addEditPlaylist {
+            position:fixed ;
+            top:40px;
+            right:0px;
+            padding: 10px;
+            background-color: #17a2b8;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        a#addEditPlaylist:hover {
+            background-color: #136a8a;
+        }
+    </style>
+</head>
+
+<body>
+    <p></p>
+    <p></p>
+    
+    <div id="logout">
+        
+        <a href="/">Logout</a> <br />
+    </div>
+
+    <h5>{{user}} Dashboard</h5>
+
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <p>Search By Album</p><br/>
+            <p></p>
+            {% for alb in album %}
+            <a href="/user/display/album/{{alb.album_id}}/{{user}}">{{alb.album_name}}</a>
+            {% endfor %}
+            <p></p>
+            <p>Search By Song</p><br/>
+            <p></p>
+            {% for sng in song %}
+            <a href="/user/view/add/{{sng.album_id}}/{{sng.song_id}}/{{user}}">{{sng.song_name}}</a>
+            {% endfor %}
+            <p></p>
+            <p>View Playlist</p><br/>
+            <p></p>
+            {% for plt in playlist %}
+            <a href="/user/playlist/display/{{plt.playlist_id}}/{{user}}">{{plt.playlist_name}}</a>
+            {% endfor %}
+            <form action="/song/search/artist/{{user}}" method="POST",id="create-product-form">
+                <div  class="mx-auto col-10 col-md-8 col-lg-3 ">
+                    <div class="form-group">
+                        <label>Search by Artist</label>
+                        <input type="text" class = "form-control" name="artist"/>
+                    </div>
+                    <input type="submit" value = "Save" />     
+                </div>
+            </form>
+            <form action="/song/search/genre/{{user}}" method="POST",id="create-product-form">
+                <div  class="mx-auto col-10 col-md-8 col-lg-3 ">
+                    <div class="form-group">
+                        <label>Search by Genre</label>
+                        <input type="text" class = "form-control" name="genre"/>
+                    </div>
+                    <input type="submit" value = "Save" />     
+                </div>
+
+            </form>
+            <p>Clear Search - View </p></br>
+            <p></p>
+            <a href="/user/display/all/{{user}}">Clear Filter</a>
+        </div>
+
+        <div class="content">
+            {% for alb in album %}
+            <div class="album-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{alb.album_name}}</h5>
+                    {% for sng in song %}
+                    {% if sng.album_id == alb.album_id %}
+                    <div>
+                        <table class="table table-bordered">
+                            <td>{{ sng.song_name }}</td>
+                            <td><a href="/user/view/add/{{sng.album_id}}/{{sng.song_id}}/{{user}}"><img
+                                        src="{{url_for('static', filename='play.png')}}" width="20" height="25"></a>
+                            </td>
+                            <td><a href="/song/view/rating/{{sng.song_id}}/{{user}}">Rating</a></td>
+                        </table>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Add/Edit Playlist Link -->
+    <a id="addEditPlaylist" href='/user/playlist/create/{{user}}'>Add/Edit Playlist</a>
+
+</body>
+
+</html>

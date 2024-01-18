@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="landing" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f8f9fa; 
+        }
+
+        #logout {
+            color: #ffff;
+            text-decoration: none;
+            background-color: #17a2b8;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        #logout a {
+            color: #ffff;
+        }
+        #back {
+            color: #ffff;
+            text-decoration: none;
+            background-color: #17a2b8;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        #back a {
+            color: #ffff;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .card-body {
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #17a2b8; 
+            color: #fff;
+        }
+
+        .card-body a {
+            color: #fff;
+            text-decoration: none;
+            background-color: #17a2b8; 
+            padding: 10px;
+            border-radius: 5px;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .card-body a:hover {
+            background-color: #136a8a; 
+        }
+    </style>
+    <title>Admin Statistics</title>
+</head>
+<body>
+    <div id="logout">
+        <a href="/">Logout</a>
+    </div>
+    <div id="back">
+        <a href="/admin/user/back/user">Back</a>
+    </div>
+    <div>
+        <h1>{{user_type}}'s Statistics</h1>
+    </div>
+    <div>
+        <h2>Total Number of Creators - {{user_count}}</h2>
+    </div>
+    <div class="row">
+        {% for user in user %}
+        <div class="card-body">
+            <h2>{{user.user_id}}</h2>
+            <a href="/user/delete/{{user.user_id}}">Flag/delete</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="landing" content="width=device-width, initial-scale=1.0">
+    <title>Creator Add Album</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 140vh;
+        }
+
+        #logout {
+            color: #ffff;
+            text-decoration: none;
+            background-color: #17a2b8;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        #logout a {
+            color: #ffff;
+        }
+
+        h3, h5 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        input[type="submit"] {
+            background-color: #17a2b8;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #136a8a;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #136a8a;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="logout"> 
+        <a href="/">Logout</a> <br />
+    </div>
+    
+    <div> 
+        <h3>{{ user }}'s Manager dashboard - Edit Album</h3>
+    </div>
+    
+    <div>
+        <h5><strong>Add Album</strong></h5>
+        <form action="/creator/album/create/{{ user }}" method="POST" id="create-alb-form">
+            <div>
+                <label>Album Name</label>
+                <input type="text" name="album" />
+                <input type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <h5><strong>Edit album</strong></h5>
+        <table id="album">
+            {% if album | length > 0 %}
+            <tr>
+                <th width="50%">Album</th>
+                <th width="12%">Actions</th>
+            </tr>
+            
+            {% for alb in album %}
+            <tr>
+                <td>{{ alb.album_name }}</td>
+                <td><a href="/creator/album/update/{{ alb.album_id }}/{{ user }}">Edit</a></td>
+                <td><a href="/creator/album/delete/{{ alb.album_id }}/{{ user }}"><img src="{{ url_for('static', filename='delete.png') }}" width="20" height="25"></a></td>
+            </tr>
+            {% endfor %}
+            
+            {% else %}
+            <tr>
+                <td colspan="2">No Albums found, add now...!</td>
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+</body>
+</html>

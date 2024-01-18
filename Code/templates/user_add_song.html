@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #logout {
+            text-align: right;
+            margin: 20px;
+        }
+
+        #logout a {
+            color: #ffff;
+            text-decoration: none;
+            background-color: #17a2b8;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        #logout a:hover {
+            color: black;
+        }
+
+        h5 {
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        .row {
+            margin-left: 10%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .col-lg-4 {
+            max-width: 18rem;
+            margin: 0 10px 20px 0;
+        }
+
+        .card {
+            border: 1px solid #17a2b8;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 1.2em;
+            color: #17a2b8;
+            margin-bottom: 15px;
+        }
+
+        .table-bordered {
+            border: 1px solid #ddd;
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        table td {
+            padding: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: black;
+        }
+
+        img {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="logout">
+        <a href="/">Logout</a><br />
+    </div>
+    <h5>{{user}} Dashboard</h5>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card border-info bg-light mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{plt.playlist_name}}</h5>
+                    {% for sng in song %}
+                    <div>
+                        <table class="table table-bordered">
+                            <td>{{ sng.song_name }}</td>
+                            <td><a href="/user/view/add/{{sng.album_id}}/{{sng.song_id}}/{{user}}"  ><img src="{{url_for('static', filename='play.png')}}" width="20" height="25"></a></td>
+                            <td><a href="/user/playlist/add/song/{{plt.playlist_id}}/{{sng.song_id}}/{{user}}" style="color: #ffff;
+                                text-decoration: none;
+                                background-color: #17a2b8;
+                                padding: 10px;
+                                border-radius: 5px;
+                                display: inline-block;
+                                margin-top: 10px;" ><strong>+</strong></a></td>
+                        </table>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
