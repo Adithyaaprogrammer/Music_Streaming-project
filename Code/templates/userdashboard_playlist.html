@@ -67,8 +67,12 @@
                 display: block;
                 margin-bottom: 10px;
                 border-bottom: 1px solid #ddd; 
-                padding-bottom: 5px; 
+                padding-bottom: 5px;
+                transition: color 0.3s ease,transform 0.3s ease; 
             }
+            .sidebar a:hover {
+    transform: scale(1.05);
+}
     
             .sidebar a:last-child {
                 border-bottom: none; 
@@ -90,7 +94,11 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 border-radius: 5px;
                         border: 1px solid #ddd;
+                        transition: background-color 0.3s ease,transform 0.3s ease;
             }
+            .album-card:hover {
+    transform: scale(1.05);
+}
     
             .card-body {
                 padding: 20px;

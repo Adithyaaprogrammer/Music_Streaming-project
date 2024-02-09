@@ -71,8 +71,12 @@
             margin-bottom: 10px;
             border-bottom: 1px solid #ddd; 
             padding-bottom: 5px; 
+            transition: color 0.3s ease,transform 0.3s ease;
             
         }
+        .sidebar a:hover {
+    transform: scale(1.05);
+}
 
         .sidebar a:last-child {
             border-bottom: none; 
@@ -96,7 +100,11 @@
             max-width: 18rem;
             border-radius: 5px;
             border: 1px solid #ddd;
+            transition: background-color 0.3s ease,transform 0.3s ease;
         }
+        .album-card:hover {
+    transform: scale(1.05);
+}
 
         .card-body {
             padding: 20px;
@@ -128,6 +136,7 @@
             text-decoration: none;
             border-radius: 5px;
             font-size: 14px;
+            transition: background-color 0.3s ease,transform 0.3s ease;
         }
 
         a#addEditPlaylist:hover {
